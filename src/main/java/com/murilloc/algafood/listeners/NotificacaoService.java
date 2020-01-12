@@ -6,6 +6,7 @@ import com.murilloc.algafood.notificacao.TipoDoNotificador;
 import com.murilloc.algafood.service.ClienteAtivadoEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +17,8 @@ public class NotificacaoService {
     private Notificador notificador;
 
     @EventListener
-    public void clienteAtivadoListener(ClienteAtivadoEvent event){
-        notificador.notificar(event.getCliente(),  "Seu cadastro no sistema está ativo");
+    @Order(1)
+    public void clienteAtivadoListener(ClienteAtivadoEvent event) {
+        notificador.notificar(event.getCliente(), "Seu cadastro no sistema está ativo");
     }
 }
